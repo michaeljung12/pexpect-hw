@@ -37,3 +37,25 @@ child.sendline("sump")
 child.sendline("quit")
 
 #homework 3
+import pexpect
+def child1fn (filename):
+  #send the command "set nowarn = yes" to mrbayes
+  child1 = pexpect.spawn("mb -i filename.nex")
+  child1.sendline("set nowarn = yes")
+  #send the command "mcmcp ngen = 1000" where XX is the string of numgen
+  child1.sendline("mcmcp ngen = XX")
+  #send the command "mcmc" to mrbayes
+  child1.sendline(r"mcmc")
+  #send the command "no" to mrbayes (do not continue analysis)
+  child1.sendline("no") 
+  #send the command "quit" to mrbayes
+  child1.sendline("quit") 
+
+def child2fn (filename):
+  child2 = pexpect.spawn("mb -i " + filename + ".nex")
+  child2.sendline(r"sump")
+  child2.sendline(r"sumt")
+  child2.sendline("quit")
+
+import glob
+
